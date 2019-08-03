@@ -15,10 +15,10 @@ import java.util.List;
  * @date 2019/8/3 9:30
  */
 public class ProductDao {
-
+    //获取连接
+    QueryRunner qr = new QueryRunner(PoolUtil.getCom());
     //查找所有产品列表
     public List<Product> selectAll(String pageSize, String pageNum) {
-        QueryRunner qr = new QueryRunner(PoolUtil.getCom());
         String sql = "select * from product limit ?,?";
         List<Product> li = null;
         try {
@@ -30,28 +30,28 @@ public class ProductDao {
     }
 
     //搜索产品
-    public Product selectOne(String productName,String productId) {
-        QueryRunner qr = new QueryRunner(PoolUtil.getCom());
-        String sql=null;
+    public Product selectOne(Integer productId) {
+        String sql = "select * from product where p_id = ?";
         Product li = null;
         try {
-            if(productName==null || productName.equals("")){
-                sql = "select* from product where p_id = ?";
-                li = qr.query(sql,new BeanHandler<Product>(Product.class),Integer.parseInt(productId));
-                return li;
-            }
-            if(productId==null || productId.equals("")){
-                sql = "select* from product where p_name = ?";
-                li = qr.query(sql,new BeanHandler<Product>(Product.class),productName);
-                return li;
-            }
-            if(productName!=null && !productName.equals("") && productId!=null && !productId.equals("")){
-                sql = "select* from product where p_name = ?and p_id=?";
-                li = qr.query(sql,new BeanHandler<Product>(Product.class),productName,Integer.parseInt(productId));
-            }
+            li = qr.query(sql,new BeanHandler<Product>(Product.class),productId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return li;
+    }
+
+
+    public List<Product> selectOne(String productName) {
+        String sql = "select * from product where p_name like ?";
+        String productName1 = "%"+productName+"%";
+        List<Product> li = null;
+        try {
+            li = qr.query(sql,new BeanListHandler<Product>(Product.class),productName1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return li;
+
     }
 }

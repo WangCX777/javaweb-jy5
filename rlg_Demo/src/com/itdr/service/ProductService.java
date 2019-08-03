@@ -4,6 +4,7 @@ import com.itdr.common.ResponseCode;
 import com.itdr.dao.ProductDao;
 import com.itdr.pojo.Product;
 import com.itdr.pojo.Users;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import javax.xml.ws.Response;
 import java.util.List;
@@ -35,16 +36,25 @@ public class ProductService {
     }
 
     public ResponseCode selectOne(String productName, String productId) {
-//        if(pageSize == null || pageSize.equals("")){
-//            pageSize = "10";
-//        }
-//        if(pageNum == null || pageNum.equals("")){
-//            pageNum = "1";
-//        }
-        Product li = pd.selectOne(productName,productId);
+
         ResponseCode rs = new ResponseCode();
-        rs.setStatus(0);
-        rs.setData(li);
+        if(productName==null || productName.equals("")){
+            Product li = pd.selectOne(Integer.parseInt(productId));
+            rs.setStatus(0);
+            rs.setData(li);
+        }
+        if(productId==null || productId.equals("")){
+            List<Product> li = pd.selectOne(productName);
+            rs.setStatus(0);
+            rs.setData(li);
+        }
         return  rs;
     }
+
+    //产品详情
+//    public ResponseCode selectOneAll(String productId) {
+//        Product li  = pd.selectOneAll(productId);
+//        ResponseCode rs = new ResponseCode();
+//        rs.
+//    }
 }

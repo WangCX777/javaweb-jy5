@@ -59,9 +59,8 @@ public class ProductController extends HttpServlet {
         //获取参数
         String pageSize = request.getParameter("pageSize");
         String pageNum = request.getParameter("pageNum");
-        ResponseCode rs = new ResponseCode();
+        ResponseCode rs = ps.selectAll(pageSize,pageNum);
         //调用业务层处理业务
-        rs = ps.selectAll(pageSize,pageNum);
         return rs;
     }
 
@@ -69,8 +68,7 @@ public class ProductController extends HttpServlet {
     private ResponseCode searchDo(HttpServletRequest request){
         String productName = request.getParameter("productName");
         String productId = request.getParameter("productId");
-        ResponseCode rs =  new ResponseCode();
-        rs = ps.selectOne(productName,productId);
+        ResponseCode rs =  ps.selectOne(productName,productId);
         return rs ;
     }
 
@@ -78,8 +76,12 @@ public class ProductController extends HttpServlet {
 //    private ResponseCode uploadDo(HttpServletRequest request) {
 //    }
 //
-//    //产品详情
+    //产品详情
 //    private ResponseCode detailDo(HttpServletRequest request) {
+//        String productId = request.getParameter("productId");
+//        ResponseCode rs =  new ResponseCode();
+//        rs = ps.selectOneAll(productId);
+//        return rs ;
 //    }
 //
 //    //产品上下架
