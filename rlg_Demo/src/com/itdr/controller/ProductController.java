@@ -42,9 +42,9 @@ public class ProductController extends HttpServlet {
             case "detail":
                 rs = detailDo(request);
                 break;
-//            case "set_sale_status":
-//                rs = set_sale_statusDo(request);
-//                break;
+            case "set_sale_status":
+                rs = set_sale_statusDo(request);
+                break;
 //            case "save":
 //                rs = saveDo(request);
 //                break;
@@ -53,6 +53,7 @@ public class ProductController extends HttpServlet {
         response.getWriter().write(rs.toString());
 
     }
+
 
     //产品列表
     private ResponseCode listDo(HttpServletRequest request) {
@@ -84,11 +85,24 @@ public class ProductController extends HttpServlet {
         return rs ;
     }
 //
-//    //产品上下架
-//    private ResponseCode set_sale_statusDo(HttpServletRequest request) {
-//    }
-//
-//    //更新或添加产品
+    //产品上下架
+    private ResponseCode set_sale_statusDo(HttpServletRequest request) {
+        String productId = request.getParameter("productId");
+        String status = request.getParameter("status");
+        ResponseCode rs =  ps.updateOne(productId,status);
+        return rs ;
+    }
+
+    //更新或添加产品
 //    private ResponseCode saveDo(HttpServletRequest request) {
+//        String productId = request.getParameter("productId");
+//        String status = request.getParameter("status");
+//        String status = request.getParameter("status");
+//        String status = request.getParameter("status");
+//        String status = request.getParameter("status");
+//        ResponseCode rs =  ps.updateAddOne(productId,status);
+//        return rs ;
 //    }
+
+
 }

@@ -66,4 +66,16 @@ public class ProductDao {
         }
         return li;
     }
+
+    //按ID查找产品   改为上架或下架
+    public int updateOne(String productId, String status) {
+        String sql = "update product set p_status = ? where p_id = ?";
+        int a = 0;
+        try {
+            a = qr.update(sql,Integer.parseInt(status),Integer.parseInt(productId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
 }

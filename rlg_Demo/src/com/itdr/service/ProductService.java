@@ -59,4 +59,18 @@ public class ProductService {
         rs.setData(li);
         return rs;
     }
+
+    //产品上下架
+    public ResponseCode updateOne(String productId, String status) {
+        int li  = pd.updateOne(productId,status);
+        ResponseCode rs = new ResponseCode();
+        if(li != 0){
+            rs.setStatus(0);
+            rs.setMag("修改产品状态成功");
+            return rs;
+        }
+        rs.setStatus(1);
+        rs.setMag("修改产品状态失败");
+        return rs;
+    }
 }
