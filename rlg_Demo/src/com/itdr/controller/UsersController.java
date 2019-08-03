@@ -60,18 +60,6 @@ public class UsersController extends HttpServlet {
         String pageNum = request.getParameter("pageNum");
 
         ResponseCode rs = new ResponseCode();
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
-        if(user == null){
-            rs.setStatus(3);
-            rs.setMag("请登录后操作！");
-            return rs;
-        }
-        if(user.getU_type() != 1){
-            rs.setStatus(3);
-            rs.setMag("没有操作权限！");
-            return rs;
-        }
 
         //调用业务层处理业务
         rs = uc.selectAll(pageSize,pageNum);

@@ -98,6 +98,7 @@ public class UserService {
 
         rs.setStatus(0);
         rs.setData(row);
+        rs.setMag("禁用成功");
         return rs;
 
     }

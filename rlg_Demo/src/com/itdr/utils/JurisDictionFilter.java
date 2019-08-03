@@ -38,15 +38,15 @@ public class JurisDictionFilter implements Filter {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("user");
         if(user == null){
-            rs.setStatus(3);
-            rs.setMag("请登录后操作！");
+            rs.setStatus(10);
+            rs.setMag("用户未登录，请登录后操作！");
             //当有页面之后 ，我就让用户重定向到登录页面
             resp.getWriter().write(rs.toString());
             return;
         }
         if(user.getU_type() != 1){
             rs.setStatus(3);
-            rs.setMag("没有操作权限");
+            rs.setMag("没有权限");
             resp.getWriter().write(rs.toString());
             return;
         }

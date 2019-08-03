@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author WangCX
  * @date 2019/8/1 18:11
  */
-@WebFilter(filterName = "MessCodeFilter",value = "/manage/user/*")
+//@WebFilter(filterName = "MessCodeFilter",value = "/manage/user/*")
 public class MessCodeFilter implements Filter {
     public void destroy() {
     }
