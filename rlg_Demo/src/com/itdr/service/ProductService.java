@@ -52,9 +52,11 @@ public class ProductService {
     }
 
     //产品详情
-//    public ResponseCode selectOneAll(String productId) {
-//        Product li  = pd.selectOneAll(productId);
-//        ResponseCode rs = new ResponseCode();
-//        rs.
-//    }
+    public ResponseCode selectOneAll(String productId) {
+        Product li  = pd.selectOneAll(productId);
+        ResponseCode rs = new ResponseCode();
+        rs.setStatus(0);
+        rs.setData(li);
+        return rs;
+    }
 }

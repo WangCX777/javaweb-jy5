@@ -39,9 +39,9 @@ public class ProductController extends HttpServlet {
 //            case "upload":
 //                rs = uploadDo(request);
 //                break;
-//            case "detail":
-//                rs = detailDo(request);
-//                break;
+            case "detail":
+                rs = detailDo(request);
+                break;
 //            case "set_sale_status":
 //                rs = set_sale_statusDo(request);
 //                break;
@@ -77,12 +77,12 @@ public class ProductController extends HttpServlet {
 //    }
 //
     //产品详情
-//    private ResponseCode detailDo(HttpServletRequest request) {
-//        String productId = request.getParameter("productId");
-//        ResponseCode rs =  new ResponseCode();
-//        rs = ps.selectOneAll(productId);
-//        return rs ;
-//    }
+    private ResponseCode detailDo(HttpServletRequest request) {
+        String productId = request.getParameter("productId");
+        ResponseCode rs =  new ResponseCode();
+        rs = ps.selectOneAll(productId);
+        return rs ;
+    }
 //
 //    //产品上下架
 //    private ResponseCode set_sale_statusDo(HttpServletRequest request) {

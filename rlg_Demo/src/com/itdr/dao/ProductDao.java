@@ -29,7 +29,7 @@ public class ProductDao {
         return li;
     }
 
-    //搜索产品
+    //搜索产品按产品ID
     public Product selectOne(Integer productId) {
         String sql = "select * from product where p_id = ?";
         Product li = null;
@@ -41,7 +41,7 @@ public class ProductDao {
         return li;
     }
 
-
+    //搜索产品按产品名称
     public List<Product> selectOne(String productName) {
         String sql = "select * from product where p_name like ?";
         String productName1 = "%"+productName+"%";
@@ -53,5 +53,17 @@ public class ProductDao {
         }
         return li;
 
+    }
+
+    //按ID查找产品   查看产品的详情
+    public Product selectOneAll(String productId) {
+        String sql = "select * from product where p_id = ?";
+        Product li = null;
+        try {
+            li = qr.query(sql,new BeanHandler<Product>(Product.class),productId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return li;
     }
 }
