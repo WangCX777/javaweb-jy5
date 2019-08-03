@@ -32,10 +32,23 @@ public class ProductDao {
     //搜索产品
     public Product selectOne(String productName,String productId) {
         QueryRunner qr = new QueryRunner(PoolUtil.getCom());
-        String sql = "select * from product where p_name = ? and p_id = ?";
+        String sql=null;
         Product li = null;
         try {
-            li = qr.query(sql,new BeanHandler<Product>(Product.class),productName,Integer.parseInt(productId));
+            if(productName==null || productName.equals("")){
+                sql = "select* from product where p_id = ?";
+                li = qr.query(sql,new BeanHandler<Product>(Product.class),Integer.parseInt(productId));
+                return li;
+            }
+            if(productId==null || productId.equals("")){
+                sql = "select* from product where p_name = ?";
+                li = qr.query(sql,new BeanHandler<Product>(Product.class),productName);
+                return li;
+            }
+            if(productName!=null && !productName.equals("") && productId!=null && !productId.equals("")){
+                sql = "select* from product where p_name = ?and p_id=?";
+                li = qr.query(sql,new BeanHandler<Product>(Product.class),productName,Integer.parseInt(productId));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
