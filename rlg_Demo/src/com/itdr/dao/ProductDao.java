@@ -18,11 +18,11 @@ public class ProductDao {
     //获取连接
     QueryRunner qr = new QueryRunner(PoolUtil.getCom());
     //查找所有产品列表
-    public List<Product> selectAll(String pageSize, String pageNum) {
+    public List<Product> selectAll(Integer pageSize, Integer pageNum) {
         String sql = "select * from product limit ?,?";
         List<Product> li = null;
         try {
-            li = qr.query(sql, new BeanListHandler<Product>(Product.class),Integer.parseInt(pageNum)-1,Integer.parseInt(pageSize));
+            li = qr.query(sql, new BeanListHandler<Product>(Product.class),pageNum-1,pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class ProductDao {
     }
 
     //按ID查找产品   查看产品的详情
-    public Product selectOneAll(String productId) {
+    public Product selectOneAll(Integer productId) {
         String sql = "select * from product where p_id = ?";
         Product li = null;
         try {
@@ -68,11 +68,37 @@ public class ProductDao {
     }
 
     //按ID查找产品   改为上架或下架
-    public int updateOne(String productId, String status) {
+    public int updateOne(Integer productId, Integer status) {
         String sql = "update product set p_status = ? where p_id = ?";
         int a = 0;
         try {
-            a = qr.update(sql,Integer.parseInt(status),Integer.parseInt(productId));
+            a = qr.update(sql,status,productId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
+    //更新产品
+    public int updateAddOne(Integer id, Integer categoryId, String name,
+                            String subtitle, String mainImage, Integer status, double price) {
+        String sql = "update product set p_categrouyId = ? ,p_name = ?,p_subtitle = ?,p_mainImage = ?,p_status = ?,p_price = ? where p_id = ?";
+        int a = 0;
+        try {
+            a = qr.update(sql,categoryId,name,subtitle,mainImage,status,price,id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
+    //新增产品
+    public int updateAddOne(Integer categoryId, String name, String subtitle,
+                            String mainImage, Integer status, double price) {
+        String sql = "insert into product values(null,?,?,?,?,?,?)";
+        int a = 0;
+        try {
+            a = qr.update(sql,categoryId,name,subtitle,mainImage,status,price);
         } catch (SQLException e) {
             e.printStackTrace();
         }

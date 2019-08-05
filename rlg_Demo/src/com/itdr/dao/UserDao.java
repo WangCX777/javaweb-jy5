@@ -16,13 +16,13 @@ import java.util.List;
  */
 public class UserDao {
     //查找所有用户
-    public List<Users> selectAll(String pageSize, String pageNum) {
+    public List<Users> selectAll(Integer pageSize, Integer pageNum) {
     //  ComboPooledDataSource co = ;
         QueryRunner qr = new QueryRunner(PoolUtil.getCom());
         String sql = "select * from users limit ?,?";
         List<Users> li = null;
         try {
-             li = qr.query(sql, new BeanListHandler<Users>(Users.class),Integer.parseInt(pageNum),Integer.parseInt(pageSize));
+             li = qr.query(sql, new BeanListHandler<Users>(Users.class),pageNum,pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         }

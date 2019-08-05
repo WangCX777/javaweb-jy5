@@ -26,8 +26,8 @@ public class PropertiesGetUtil {
         return value;
     }
 
-    public static void main(String [] args){
-        System.out.println(getValue("USER_DISABLE_CODE"));
-        System.out.println(getValue("USER_DISABLE_MSG"));
-    }
+//    public static void main(String [] args){
+//        System.out.println(getValue("USER_DISABLE_CODE"));
+//        System.out.println(getValue("USER_DISABLE_MSG"));
+//    }
 }

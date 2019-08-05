@@ -1,5 +1,7 @@
 package com.itdr.common;
 
+import com.itdr.utils.PropertiesGetUtil;
+
 /**
  * @author WangCX
  * @date 2019/8/1 13:20
@@ -45,4 +47,26 @@ public class ResponseCode<T> {
                 ", mag='" + mag + '\'' +
                 '}';
     }
+
+    public static <T>ResponseCode success(T data){
+        ResponseCode rs = new ResponseCode();
+        rs.setStatus(Integer.parseInt(PropertiesGetUtil.getValue("PRODUCT_LIST_SUCCESS")));
+        rs.setData(data);
+        return rs;
+    }
+    public static <T>ResponseCode success(Integer status,String msg){
+        ResponseCode rs = new ResponseCode();
+        rs.setStatus(status);
+        rs.setMag(msg);
+        return rs;
+    }
+
+    public static <T>ResponseCode success(Integer status,T data ,String msg){
+        ResponseCode rs = new ResponseCode();
+        rs.setStatus(status);
+        rs.setData(data);
+        rs.setMag(msg);
+        return rs;
+    }
+
 }
