@@ -2,6 +2,7 @@ package com.itdr.controller;
 
 import com.itdr.common.ResponseCode;
 import com.itdr.service.OrderService;
+import com.itdr.utils.JsonUtils;
 import com.itdr.utils.PathUtil;
 
 import javax.servlet.ServletException;
@@ -39,7 +40,8 @@ public class OrderController extends HttpServlet {
                 break;
         }
         //返回响应数据
-        response.getWriter().write(rs.toString());
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(JsonUtils.obj2String(rs));
     }
 
     //订单发货

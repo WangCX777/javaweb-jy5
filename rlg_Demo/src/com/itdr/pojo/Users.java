@@ -60,15 +60,15 @@ public class Users {
         this.u_stats = u_stats;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "u_id=" + u_id +
-                ", u_name='" + u_name + '\'' +
-                ", u_pwd='" + u_pwd + '\'' +
-                ", u_tel='" + u_tel + '\'' +
-                ", u_type=" + u_type +
-                ", u_stats=" + u_stats +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Users{" +
+//                "u_id=" + u_id +
+//                ", u_name='" + u_name + '\'' +
+//                ", u_pwd='" + u_pwd + '\'' +
+//                ", u_tel='" + u_tel + '\'' +
+//                ", u_type=" + u_type +
+//                ", u_stats=" + u_stats +
+//                '}';
+//    }
 }

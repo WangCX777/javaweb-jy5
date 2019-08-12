@@ -70,16 +70,4 @@ public class Category {
 
     //重写toString
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "c_id=" + c_id +
-                ", c_parentId=" + c_parentId +
-                ", c_name='" + c_name + '\'' +
-                ", c_status='" + c_status + '\'' +
-                ", c_sortOrder=" + c_sortOrder +
-                ", c_createTime=" + c_createTime +
-                ", c_updateTime=" + c_updateTime +
-                '}';
-    }
 }

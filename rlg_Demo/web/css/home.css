@@ -1,0 +1,83 @@
+/* 左边 */
+#left{
+	height: 100%;
+	width: 12%;
+	background: #4464be;
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+#zhuti{
+	height: 7%;
+	font-family: "楷体";
+	font-size: 55px;
+	text-align: center;
+	box-shadow: -5px 1px 6px #000000;
+	border-radius: 5px;
+}
+#left>ul{
+	margin-top: 20px;
+}
+#left>ul>li{
+	/* height: 60px; */
+	width: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	font-family: "楷体";
+	font-size: 30px;
+	align-content: center;
+	align-items: center;
+	padding: 5px 0;
+}
+.neirong{
+	
+}
+.neirong>ul{
+	width: 100%;
+	background:rgb(32,169,221);
+	display: none;
+}
+.neirong li{
+	cursor: pointer;
+	width: 100%;
+	padding: 2px 0;	
+}
+
+.tit{
+	display: none;
+}
+.tit:hover{
+	margin-top: 1px;
+	cursor: pointer;
+	box-shadow: -5px -3px 3px #404040;
+}
+.l{
+	height: 40px;
+	width: 40px;
+}
+.r{
+	height: 20px;
+	width: 40px;
+}
+
+/* 中上 */
+#top{
+	height: 7%;
+	width: 88%;
+	background: #4464be;
+	top:0;
+	right: 0;
+	position: fixed;
+	box-shadow: -1px 1px 6px #000000;
+	border-radius: 0px 0px 5px 5px;
+}
+#shows{
+	height: 95%;
+	width: 85%;
+	margin-top: 4%;
+	margin-left: 14%;
+}

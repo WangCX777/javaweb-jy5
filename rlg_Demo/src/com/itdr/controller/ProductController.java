@@ -2,6 +2,7 @@ package com.itdr.controller;
 
 import com.itdr.common.ResponseCode;
 import com.itdr.service.ProductService;
+import com.itdr.utils.JsonUtils;
 import com.itdr.utils.PathUtil;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @author WangCX
@@ -37,7 +40,7 @@ public class ProductController extends HttpServlet {
                 rs = searchDo(request);
                 break;
 //            case "upload":
-//                rs = uploadDo(request);
+//                rs = uploadDo(request,response);
 //                break;
             case "detail":
                 rs = detailDo(request);
@@ -50,7 +53,8 @@ public class ProductController extends HttpServlet {
                 break;
         }
         //返回响应数据
-        response.getWriter().write(rs.toString());
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(JsonUtils.obj2String(rs));
 
     }
 
@@ -74,9 +78,28 @@ public class ProductController extends HttpServlet {
     }
 
 //    //产品图片上传
-//    private ResponseCode uploadDo(HttpServletRequest request) {
-//    }
-//
+    private void uploadDo(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            Part part = request.getPart("upimg");
+            String name = part.getHeader("content-disposition");
+            String root = "D:\\WorkSpace\\github\\javaweb-jy5\\rlg_Demo\\web\\img\\product";
+            String str = name.substring(name.lastIndexOf("."),name.length()-1);
+            String filename = root+"\\"+ UUID.randomUUID().toString()+str;
+            response.getWriter().write("成功");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                response.getWriter().write("失败");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }
+
     //产品详情
     private ResponseCode detailDo(HttpServletRequest request) {
         String productId = request.getParameter("productId");

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<title>睿乐购</title>
+	</head>
+	<body>
+		<div id="max">
+			<div id="haha">
+				
+			</div>
+			<div id="biaoti">
+					睿乐购
+			</div>
+			<div id="denglu">
+				<input id="name" type="text"  placeholder="请输入账号">
+				<input id="password" type="password" placeholder="请输入密码">
+				<button id="login_up">登录</button>
+				<!-- <button id="login_in">还没有？创建一个吧</button> -->
+			</div>
+		</div>
+	</body>
+	<script src = "js/jquery-3.3.1.js"></script>
+	<script>
+		$("#login_up").click(function () {
+			$.post(
+					"/manage/user/login.do",
+					{
+						username:$("#name").val(),
+						password:$("#password").val()
+					 },
+					function (e) {
+						if (e.status === 0){
+							window.open("home.html","_self");
+						}else {
+							alert(e.mag);
+						}
+					},
+					"JSON"
+
+			)
+		})
+	</script>
+</html>

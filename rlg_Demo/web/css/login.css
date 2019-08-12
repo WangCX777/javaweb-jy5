@@ -1,0 +1,73 @@
+*{
+	transition: all .5s;
+}
+#max{
+	background: url(../img/bj/53823.jpg) no-repeat;
+	background-size: 100% 100%;
+	/* filter: blur(10px); */
+}
+#haha{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: url(../img/bj/53823.jpg) no-repeat;
+	background-size: 100% 100%;
+	filter: blur(10px);
+}
+#max>img{
+	width: 1900px;
+	filter: blur(5px);
+	width: 100%;
+}
+#denglu{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 400px;
+	width: 400px;
+	background: rgba(173,216,230,.3);
+	position: absolute;
+	margin-top: 180px;
+	right:300px ;
+	border-radius: 25px;
+	font-family: "楷体";
+	font-size: 30px;
+}
+#denglu>input{
+	width: 300px;
+	height: 60px;
+	border: 1px solid #FFFAF0;
+	border-radius: 20px;
+	box-shadow: none;
+	outline: none;
+	font-size: 30px;
+	text-align: center;
+	font-family: "楷体";
+}
+#denglu>button{
+	width: 300px;
+	height: 70px;
+	border-radius: 10px;
+	background: rgb(65,125,109);
+	outline: none;
+	font-size: 30px;
+	font-family: "楷体";
+	border: none;
+	color: #FFFFFF;
+}
+#denglu>button:hover{
+	background: rgb(153,215,230);
+	color:slategray;
+}
+#biaoti{
+	font-size: 80px;
+	color: white;
+	z-index: 10;
+	font-family: "楷体";
+	left: 300px;
+	position: absolute;
+	top: 350px;
+	text-align: center;
+	color: #708090;
+}

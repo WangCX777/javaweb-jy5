@@ -24,7 +24,7 @@ public class UserService {
             s = Integer.parseInt(pageSize);
         }
         if(pageNum == null || pageNum.equals("")){
-            pageNum = "1";
+            pageNum = "0";
             n = Integer.parseInt(pageNum);
         }
 

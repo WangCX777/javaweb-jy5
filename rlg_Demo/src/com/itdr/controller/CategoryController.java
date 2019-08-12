@@ -2,6 +2,7 @@ package com.itdr.controller;
 
 import com.itdr.common.ResponseCode;
 import com.itdr.service.CategoryService;
+import com.itdr.utils.JsonUtils;
 import com.itdr.utils.PathUtil;
 
 import javax.servlet.ServletException;
@@ -34,13 +35,21 @@ public class CategoryController extends HttpServlet {
             case "set_category_name":
                 rs = set_category_nameDo(request);
                 break;
-//            case "get_deep_category":
-//                rs = set_sale_statusDo(request);
-//                break;
+            case "get_deep_category":
+                rs = set_sale_statusDo(request);
+                break;
         }
         //返回响应数据
-        response.getWriter().write(rs.toString());
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(JsonUtils.obj2String(rs));
 
+    }
+
+    //获取当前ID的所有子类
+    private ResponseCode set_sale_statusDo(HttpServletRequest request) {
+        String categoryId = request.getParameter("categoryId");
+        ResponseCode rs = cs.get_deep_category(categoryId);
+        return rs;
     }
 
     //修改品类名称
@@ -62,6 +71,7 @@ public class CategoryController extends HttpServlet {
     }
 
     //查找
+
     private ResponseCode get_categoryDo(HttpServletRequest request) {
         String categoryId = request.getParameter("categoryId");
 

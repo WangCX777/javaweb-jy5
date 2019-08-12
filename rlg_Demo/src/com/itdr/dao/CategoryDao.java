@@ -46,4 +46,15 @@ public class CategoryDao {
         }
         return a;
     }
+
+    public List<Category> get_deep_category(Integer id) {
+        String sql = "select * from category where c_parentId = ?";
+        List<Category> li = null;
+        try {
+            li = qr.query(sql ,new BeanListHandler<Category>(Category.class),id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return li;
+    }
 }

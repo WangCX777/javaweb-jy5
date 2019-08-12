@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>睿乐购</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/home.css"/>
+		
+	</head>
+	<body>
+		<div id="left">
+			<div id="zhuti">
+				睿乐购
+			</div>
+			<ul>
+				<li class="tit">
+					<img src="/img/mekuai/用户管理.png" class="l" >
+					用户
+					<img src="/img/mekuai/下拉.png" class="r">
+					
+				</li>
+				<li class="neirong">
+					<ul>
+						<li id="userlist">用户列表</li>
+					</ul>
+				</li>
+				<li class="tit">
+					<img src="/img/mekuai/商品管理.png"class="l"  >
+					商品
+					<img src="/img/mekuai/下拉.png" class="r">
+				</li>
+				<li class="neirong">
+					<ul>
+						<li id="productlist">商品列表</li>
+						<li>商品搜索</li>
+						<li>图片上传</li>
+					</ul>
+				</li>
+				<li class="tit">
+					<img src="/img/mekuai/订单管理.png" class="l" >
+					订单
+					<img src="/img/mekuai/下拉.png" class="r">
+				</li>
+				<li class="neirong">
+					<ul>
+						<li>订单列表</li>
+						<li>查询订单</li>
+						<li>订单发货</li>
+					</ul>
+				</li>
+				<li class="tit">
+					<img src="/img/mekuai/分类管理.png" class="l" >
+					商品分类
+					<img src="/img/mekuai/下拉.png" class="r" >
+				</li>
+				<li class="neirong">
+					<ul>
+						<li>分类列表</li>
+						<li>查询分类</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="top">
+			
+		</div>
+		<div id="shows">
+			<table1>
+
+			</table1>
+		</div>
+	</body>
+	<script src="/js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/home.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$("#userlist").click(function () {
+			$.get(
+					"/manage/user/list.do",
+					function (dt) {
+						if(dt.status != 0){
+							alert(dt.mag)
+						}else{
+							// alert(dt.data[4])
+							$("#shows").empty();
+							var a ="<tr><th>Id</th> <th>用户名</th> <th>密码</th> <th>电话</th> <th>用户类型</th> <th>用户禁用</th> </tr>"
+							$("#shows").append(a);
+							for (var i = 0;i<=dt.data.length;i++){
+								var s ="<tr><td name = 'u_id'>"+dt.data[i].u_id+"</td><td>"+dt.data[i].u_name+"</td><td>"+dt.data[i].u_pwd+
+										"</td><td>"+dt.data[i].u_tel+"</td><td><a href=''>操作</a></td><td><a href='/manage/user/disableuser.do'>禁用</a></td></tr>";
+								$("#shows").append(s);
+							}
+						}
+
+					},
+					"JSON"
+			)
+		})
+
+		$("#productlist").click(function () {
+			$.get(
+					"/manage/product/list.do",
+					function (dt) {
+						if(dt.status != 0){
+							alert(dt.mag)
+						}else{
+							// alert(dt.data[4])
+							$("#shows").empty();
+							var a ="<tr><th>Id</th> <th>分类</th> <th>商品</th> <th>活动</th> <th>图片</th> <th>上下架</th> <th>价格</th></tr>"
+							$("#shows").append(a);
+							for (var i = 0;i<=dt.data.length;i++){
+								var s ="<tr><td>"+dt.data[i].p_id+"</td><td>"+dt.data[i].p_categrouyId+"</td><td>"+dt.data[i].p_name+
+										"</td><td>"+dt.data[i].p_subtitle+"</td><td>"+dt.data[i].p_mainImage+"</td><td><a href=''>上下架</a></td><td>"+dt.data[i].p_price+"</td></tr>";
+								$("#shows").append(s);
+							}
+						}
+
+					},
+					"JSON"
+			)
+		})
+	</script>
+</html>
